@@ -29,7 +29,7 @@ import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 
 import com.example.android.uamp.MusicService;
-import com.example.android.uamp.R;
+import nodomain.freeyourgadget.gadgetbridge.R;
 import com.example.android.uamp.utils.LogHelper;
 import com.example.android.uamp.utils.NetworkHelper;
 import com.example.android.uamp.utils.ResourceHelper;

@@ -56,6 +56,8 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
+import nodomain.freeyourgadget.gadgetbridge.R;
+
 import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_EMPTY_ROOT;
 import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_ROOT;
 

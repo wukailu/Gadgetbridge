@@ -35,7 +35,7 @@ import android.widget.Toast;
 
 import com.example.android.uamp.AlbumArtCache;
 import com.example.android.uamp.MusicService;
-import com.example.android.uamp.R;
+import nodomain.freeyourgadget.gadgetbridge.R;
 import com.example.android.uamp.utils.LogHelper;
 
 /**

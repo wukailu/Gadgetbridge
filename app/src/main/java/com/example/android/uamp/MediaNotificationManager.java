@@ -43,6 +43,8 @@ import com.example.android.uamp.ui.MusicPlayerActivity;
 import com.example.android.uamp.utils.LogHelper;
 import com.example.android.uamp.utils.ResourceHelper;
 
+import nodomain.freeyourgadget.gadgetbridge.R;
+
 /**
  * Keeps track of a notification and updates it automatically for a given
  * MediaSession. Maintaining a visible notification (usually) guarantees that the music service

@@ -19,6 +19,7 @@ package nodomain.freeyourgadget.gadgetbridge.activities;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.ActivityOptions;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -44,6 +45,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.example.android.uamp.ui.ActionBarCastActivity;
+import com.example.android.uamp.ui.MusicPlayerActivity;
+import com.example.android.uamp.ui.PlaceholderActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -238,22 +243,49 @@ public class ControlCenterv2 extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
 
+//        switch (item.getItemId()) {
+//            case R.id.action_settings:
+//                Intent settingsIntent = new Intent(this, SettingsActivity.class);
+//                startActivity(settingsIntent);
+//                return true;
+//            case R.id.action_debug:
+//                Intent debugIntent = new Intent(this, DebugActivity.class);
+//                startActivity(debugIntent);
+//                return true;
+//            case R.id.action_db_management:
+//                Intent dbIntent = new Intent(this, DbManagementActivity.class);
+//                startActivity(dbIntent);
+//                return true;
+//            case R.id.action_quit:
+//                GBApplication.quit();
+//                return true;
+//        }
+
+        Class activityClass = null;
         switch (item.getItemId()) {
+            case R.id.navigation_allmusic:
+                activityClass = MusicPlayerActivity.class;
+                startActivity(new Intent(this, activityClass));
+                finish();
+                break;
+            case R.id.navigation_playlists:
+                // TODO: Change the Class to Band main.
+                activityClass = ControlCenterv2.class;
+                startActivity(new Intent(this, activityClass));
+                finish();
+                break;
             case R.id.action_settings:
-                Intent settingsIntent = new Intent(this, SettingsActivity.class);
-                startActivity(settingsIntent);
-                return true;
+                activityClass = SettingsActivity.class;
+                startActivity(new Intent(this, activityClass));
+                break;
             case R.id.action_debug:
-                Intent debugIntent = new Intent(this, DebugActivity.class);
-                startActivity(debugIntent);
-                return true;
+                activityClass = DebugActivity.class;
+                startActivity(new Intent(this, activityClass));
+                break;
             case R.id.action_db_management:
-                Intent dbIntent = new Intent(this, DbManagementActivity.class);
-                startActivity(dbIntent);
-                return true;
-            case R.id.action_quit:
-                GBApplication.quit();
-                return true;
+                activityClass = DbManagementActivity.class;
+                startActivity(new Intent(this, activityClass));
+                break;
         }
 
         return true;

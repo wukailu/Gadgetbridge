@@ -34,7 +34,7 @@ import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.view.View;
 
-import com.example.android.uamp.R;
+import nodomain.freeyourgadget.gadgetbridge.R;
 import com.example.android.uamp.utils.LogHelper;
 import com.example.android.uamp.utils.QueueHelper;
 

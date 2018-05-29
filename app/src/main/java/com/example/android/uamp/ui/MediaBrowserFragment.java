@@ -37,7 +37,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.android.uamp.R;
+import nodomain.freeyourgadget.gadgetbridge.R;
 import com.example.android.uamp.utils.LogHelper;
 import com.example.android.uamp.utils.MediaIDHelper;
 import com.example.android.uamp.utils.NetworkHelper;

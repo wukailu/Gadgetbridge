@@ -25,7 +25,7 @@ import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.text.TextUtils;
 
-import com.example.android.uamp.R;
+import nodomain.freeyourgadget.gadgetbridge.R;
 import com.example.android.uamp.utils.LogHelper;
 
 /**

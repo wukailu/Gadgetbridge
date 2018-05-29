@@ -23,7 +23,7 @@ import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.view.ViewGroup;
 
-import com.example.android.uamp.R;
+import nodomain.freeyourgadget.gadgetbridge.R;
 import com.example.android.uamp.ui.MediaItemViewHolder;
 import com.example.android.uamp.utils.LogHelper;
 import com.example.android.uamp.utils.QueueHelper;

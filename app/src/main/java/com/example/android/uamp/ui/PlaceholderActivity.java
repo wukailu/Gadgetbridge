@@ -17,7 +17,7 @@ package com.example.android.uamp.ui;
 
 import android.os.Bundle;
 
-import com.example.android.uamp.R;
+import nodomain.freeyourgadget.gadgetbridge.R;
 
 /**
  * Placeholder activity for features that are not implemented in this sample, but

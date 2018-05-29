@@ -31,6 +31,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import nodomain.freeyourgadget.gadgetbridge.R;
+
 /**
  * Validates that the calling package is authorized to browse a
  * {@link android.service.media.MediaBrowserService}.

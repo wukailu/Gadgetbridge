@@ -16,18 +16,36 @@
   -->
 <menu xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/applicaction_options"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/navigation_allmusic"
-            android:checked="true"
+            android:checked="false"
             android:icon="@drawable/ic_allmusic_black_24dp"
             android:title="@string/drawer_allmusic_title" />
         <item
             android:id="@+id/navigation_playlists"
             android:icon="@drawable/ic_playlist_music_black_24dp"
-            android:title="@string/drawer_playlists_title"/>
-    </group>
-    <group >
-        <item android:title="@string/app_name" />
+            android:title="@string/drawer_playlists_title" />
+        <item
+            android:id="@+id/action_settings"
+            android:icon="@drawable/ic_settings"
+            android:title="@string/action_settings" />
+        <item
+            android:id="@+id/action_debug"
+            android:checked="false"
+            android:icon="@drawable/ic_debug"
+            android:title="@string/action_debug"
+            android:visible="false" />
+        <item
+            android:id="@+id/action_db_management"
+            android:icon="@drawable/ic_database_management"
+            android:title="@string/action_db_management"
+            android:visible="false" />
+        <item
+            android:id="@+id/action_quit"
+            android:icon="@drawable/ic_quit"
+            android:title="@string/action_quit" />
     </group>
 </menu>

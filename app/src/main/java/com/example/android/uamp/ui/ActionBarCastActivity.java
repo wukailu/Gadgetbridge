@@ -20,6 +20,7 @@ import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Debug;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -33,7 +34,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.android.uamp.R;
+import nodomain.freeyourgadget.gadgetbridge.GBApplication;
+import nodomain.freeyourgadget.gadgetbridge.R;
+import nodomain.freeyourgadget.gadgetbridge.activities.ControlCenterv2;
+import nodomain.freeyourgadget.gadgetbridge.activities.DbManagementActivity;
+import nodomain.freeyourgadget.gadgetbridge.activities.DebugActivity;
+import nodomain.freeyourgadget.gadgetbridge.activities.SettingsActivity;
+
 import com.example.android.uamp.utils.LogHelper;
 import com.google.android.gms.cast.framework.CastButtonFactory;
 import com.google.android.gms.cast.framework.CastContext;
@@ -98,15 +105,27 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
                 switch (mItemToOpenWhenDrawerCloses) {
                     case R.id.navigation_allmusic:
                         activityClass = MusicPlayerActivity.class;
+                        startActivity(new Intent(ActionBarCastActivity.this, activityClass), extras);
+                        finish();
                         break;
                     case R.id.navigation_playlists:
                         // TODO: Change the Class to Band main.
-                        activityClass = PlaceholderActivity.class;
+                        activityClass = ControlCenterv2.class;
+                        startActivity(new Intent(ActionBarCastActivity.this, activityClass), extras);
+                        finish();
                         break;
-                }
-                if (activityClass != null) {
-                    startActivity(new Intent(ActionBarCastActivity.this, activityClass), extras);
-                    finish();
+                    case R.id.action_settings:
+                        activityClass = SettingsActivity.class;
+                        startActivity(new Intent(ActionBarCastActivity.this, activityClass), extras);
+                        break;
+                    case R.id.action_debug:
+                        activityClass = DebugActivity.class;
+                        startActivity(new Intent(ActionBarCastActivity.this, activityClass), extras);
+                        break;
+                    case R.id.action_db_management:
+                        activityClass = DbManagementActivity.class;
+                        startActivity(new Intent(ActionBarCastActivity.this, activityClass), extras);
+                        break;
                 }
             }
         }

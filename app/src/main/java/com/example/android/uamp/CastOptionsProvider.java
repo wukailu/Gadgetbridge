@@ -24,6 +24,8 @@ import com.google.android.gms.cast.framework.SessionProvider;
 
 import java.util.List;
 
+import nodomain.freeyourgadget.gadgetbridge.R;
+
 /**
  * Specify receiver application ID for cast
  */
