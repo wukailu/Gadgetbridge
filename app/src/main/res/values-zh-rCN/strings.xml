@@ -538,5 +538,45 @@
     <string name="devicetype_vibratissimo">Vibratissimo</string>
     <string name="devicetype_hplus">HPlus</string>
     <string name="choose_auto_export_location">选择导出位置</string>
-<string name="notification_channel_name">Gadgetbridge 通知</string>
+    <string name="notification_channel_name">通知</string>
+
+    <!--
+        From Music Player
+    -->
+    <string name="stop_casting">停止播放</string>
+    <string name="label_pause">暂停</string>
+    <string name="label_play">播放</string>
+    <string name="label_previous">前一首</string>
+    <string name="label_next">下一首</string>
+    <string name="favorite">最爱</string>
+    <string name="error_no_metadata">无法检索数据。</string>
+    <string name="browse_genres">流派</string>
+    <string name="browse_genre_subtitle">根据流派分类</string>
+    <string name="browse_musics_by_genre_subtitle">%1$s songs</string>
+    <string name="random_queue_title">随机一首</string>
+    <string name="error_no_connection">无法连接到fu\'wu\'qi</string>
+    <string name="error_loading_media">加载音频出错</string>
+    <string name="casting_to_device">正在播放到 %1$s</string>
+    <string name="currently_playing_song">正在播放</string>
+    <string name="currently_playing_artist">歌手</string>
+    <string name="currently_playing_extra_info">额外信息</string>
+    <string name="play_item">播放歌曲</string>
+    <string name="play_pause">播放或暂停</string>
+    <string name="skip_next">下一首</string>
+    <string name="skip_prev">上一首</string>
+    <string name="touch_to_cast">触摸即可连接到Google Cast设备</string>
+    <string name="home_title">首页</string>
+    <string name="related_content_header">你还可能喜欢</string>
+    <string name="action_listen">播放</string>
+    <string name="open_content_drawer">打开菜单</string>
+    <string name="close_content_drawer">关闭菜单</string>
+    <string name="drawer_allmusic_title">所有音乐</string>
+    <string name="drawer_playlists_title">手环管理</string>
+    <string name="now_playing">正在播放</string>
+    <string name="background_image_str">背景图片</string>
+    <string name="search_queue_title">查找结果</string>
+    <string name="no_search_results">找不到结果</string>
+    <string name="loading">正在加载</string>
+    <string name="media_route_menu_title">播放到</string>
+    <string name="nav_header_username">用户名</string>
 </resources>
