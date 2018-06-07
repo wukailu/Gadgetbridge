@@ -52,6 +52,14 @@ public class MediaItemViewHolder {
     private TextView mDescriptionView;
     private LinearLayout mEmotionView;
 
+    private static final String[] EMOTIONS_TYPES={
+            "Aggressive", "Brooding", "Cool", "Defiant", "Easygoing",
+            "Empowering", "Energizing", "Excited", "Fiery", "Gritty",
+            "Lively", "Melancholy", "Peaceful", "Romantic", "Rowdy",
+            "Sensual", "Sentimental", "Serious", "Somber", "Sophisticated",
+            "Stirring", "Tender", "Upbeat", "Urgent", "Yearning"
+    };
+
     // Returns a view for use in media item list.
     static View setupListView(Activity activity, View convertView, ViewGroup parent,
                               MediaBrowserCompat.MediaItem item) {
@@ -80,6 +88,18 @@ public class MediaItemViewHolder {
         MediaDescriptionCompat description = item.getDescription();
         holder.mTitleView.setText(description.getTitle());
         holder.mDescriptionView.setText(description.getSubtitle());
+
+        int type1 = (int)(Math.random()*25);
+        int type2 = (int)(Math.random()*25);
+        while(type2 == type1)
+            type2 = (int)(Math.random()*25);
+        int type3 = (int)(Math.random()*25);
+        while(type3 == type2 || type3 == type1)
+            type3 = (int)(Math.random()*25);
+        ((TextView)holder.mEmotionView.getChildAt(0)).setText( EMOTIONS_TYPES[ type1 ] );
+        ((TextView)holder.mEmotionView.getChildAt(1)).setText( EMOTIONS_TYPES[ type2 ] );
+        ((TextView)holder.mEmotionView.getChildAt(2)).setText( EMOTIONS_TYPES[ type3 ] );
+
 
         // If the state of convertView is different, we need to adapt the view to the
         // new state.
