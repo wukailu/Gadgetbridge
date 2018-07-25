@@ -579,4 +579,5 @@
     <string name="loading">正在加载</string>
     <string name="media_route_menu_title">播放到</string>
     <string name="nav_header_username">用户名</string>
+    <string name="gadgetbridge_running">Gadgetbridge正在运行</string>
 </resources>

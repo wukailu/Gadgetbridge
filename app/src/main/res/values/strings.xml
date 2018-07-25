@@ -614,4 +614,5 @@
     <string name="notification_channel" translatable="false">UAMP_Channel_ID</string>
     <string name="notification_channel_description" translatable="false">Channel ID for UAMP</string>
     <string name="emotion_none" translatable="false">Happy</string>
+    <string name="gadgetbridge_running">Gadgetbridge is running</string>
 </resources>

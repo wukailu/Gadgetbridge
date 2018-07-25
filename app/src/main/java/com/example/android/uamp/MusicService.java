@@ -41,10 +41,7 @@ import com.example.android.uamp.playback.Playback;
 import com.example.android.uamp.playback.PlaybackManager;
 import com.example.android.uamp.playback.QueueManager;
 import com.example.android.uamp.ui.NowPlayingActivity;
-import com.example.android.uamp.utils.CarHelper;
 import com.example.android.uamp.utils.LogHelper;
-import com.example.android.uamp.utils.TvHelper;
-import com.example.android.uamp.utils.WearHelper;
 import com.google.android.gms.cast.framework.CastContext;
 import com.google.android.gms.cast.framework.CastSession;
 import com.google.android.gms.cast.framework.SessionManager;
@@ -216,9 +213,6 @@ public class MusicService extends MediaBrowserServiceCompat implements
         mSession.setSessionActivity(pi);
 
         mSessionExtras = new Bundle();
-        CarHelper.setSlotReservationFlags(mSessionExtras, true, true, true);
-        WearHelper.setSlotReservationFlags(mSessionExtras, true, true);
-        WearHelper.setUseBackgroundFromTheme(mSessionExtras, true);
         mSession.setExtras(mSessionExtras);
 
         mPlaybackManager.updatePlaybackState(null);
@@ -232,7 +226,7 @@ public class MusicService extends MediaBrowserServiceCompat implements
         int playServicesAvailable =
                 GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this);
 
-        if (!TvHelper.isTvUiMode(this) && playServicesAvailable == ConnectionResult.SUCCESS) {
+        if (playServicesAvailable == ConnectionResult.SUCCESS) {
             mCastSessionManager = CastContext.getSharedInstance(this).getSessionManager();
             mCastSessionManagerListener = new CastSessionManagerListener();
             mCastSessionManager.addSessionManagerListener(mCastSessionManagerListener,
@@ -241,7 +235,7 @@ public class MusicService extends MediaBrowserServiceCompat implements
 
         mMediaRouter = MediaRouter.getInstance(getApplicationContext());
 
-        registerCarConnectionReceiver();
+//        registerCarConnectionReceiver();
     }
 
     /**
@@ -288,7 +282,7 @@ public class MusicService extends MediaBrowserServiceCompat implements
     @Override
     public void onDestroy() {
         LogHelper.d(TAG, "onDestroy");
-        unregisterCarConnectionReceiver();
+//        unregisterCarConnectionReceiver();
         // Service is being killed, so make sure we release our resources
         mPlaybackManager.handleStopRequest(null);
         mMediaNotificationManager.stopNotification();
@@ -318,21 +312,6 @@ public class MusicService extends MediaBrowserServiceCompat implements
                     + clientPackageName);
             return new MediaBrowserServiceCompat.BrowserRoot(MEDIA_ID_EMPTY_ROOT, null);
         }
-        //noinspection StatementWithEmptyBody
-        if (CarHelper.isValidCarPackage(clientPackageName)) {
-            // Optional: if your app needs to adapt the music library to show a different subset
-            // when connected to the car, this is where you should handle it.
-            // If you want to adapt other runtime behaviors, like tweak ads or change some behavior
-            // that should be different on cars, you should instead use the boolean flag
-            // set by the BroadcastReceiver mCarConnectionReceiver (mIsConnectedToCar).
-        }
-        //noinspection StatementWithEmptyBody
-        if (WearHelper.isValidWearCompanionPackage(clientPackageName)) {
-            // Optional: if your app needs to adapt the music library for when browsing from a
-            // Wear device, you should return a different MEDIA ROOT here, and then,
-            // on onLoadChildren, handle it accordingly.
-        }
-
         return new BrowserRoot(MEDIA_ID_ROOT, null);
     }
 
@@ -395,24 +374,24 @@ public class MusicService extends MediaBrowserServiceCompat implements
     public void onPlaybackStateUpdated(PlaybackStateCompat newState) {
         mSession.setPlaybackState(newState);
     }
-
-    private void registerCarConnectionReceiver() {
-        IntentFilter filter = new IntentFilter(CarHelper.ACTION_MEDIA_STATUS);
-        mCarConnectionReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                String connectionEvent = intent.getStringExtra(CarHelper.MEDIA_CONNECTION_STATUS);
-                mIsConnectedToCar = CarHelper.MEDIA_CONNECTED.equals(connectionEvent);
-                LogHelper.i(TAG, "Connection event to Android Auto: ", connectionEvent,
-                        " isConnectedToCar=", mIsConnectedToCar);
-            }
-        };
-        registerReceiver(mCarConnectionReceiver, filter);
-    }
-
-    private void unregisterCarConnectionReceiver() {
-        unregisterReceiver(mCarConnectionReceiver);
-    }
+//
+//    private void registerCarConnectionReceiver() {
+//        IntentFilter filter = new IntentFilter(CarHelper.ACTION_MEDIA_STATUS);
+//        mCarConnectionReceiver = new BroadcastReceiver() {
+//            @Override
+//            public void onReceive(Context context, Intent intent) {
+//                String connectionEvent = intent.getStringExtra(CarHelper.MEDIA_CONNECTION_STATUS);
+//                mIsConnectedToCar = CarHelper.MEDIA_CONNECTED.equals(connectionEvent);
+//                LogHelper.i(TAG, "Connection event to Android Auto: ", connectionEvent,
+//                        " isConnectedToCar=", mIsConnectedToCar);
+//            }
+//        };
+//        registerReceiver(mCarConnectionReceiver, filter);
+//    }
+//
+//    private void unregisterCarConnectionReceiver() {
+//        unregisterReceiver(mCarConnectionReceiver);
+//    }
 
     /**
      * A simple handler that stops the service if playback is not active (playing)
