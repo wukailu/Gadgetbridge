@@ -51,4 +51,5 @@
     <color name="background_gradient_end">#DDDDDD</color>
     <color name="default_background">#0096a6</color>
     <color name="emotion_color_none">#ec5149</color>
+    <color name="colorPrimaryDark">#dd2c00</color>
 </resources>

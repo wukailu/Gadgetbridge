@@ -17,7 +17,7 @@
         <!--</style>-->
 
         <style name="UAmpAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-                <item name="colorPrimary">#ffff5722</item>
+                <item name="colorPrimary">@color/emotion_color_none</item>
                 <item name="colorPrimaryDark">#ffbf360c</item>
                 <item name="colorAccent">#ffff5722</item>
                 <item name="alertDialogTheme">@style/Theme.AppCompat.Dialog.Alert</item>

@@ -16,6 +16,7 @@
         <item name="chart_light_sleep">@color/chart_light_sleep_light</item>
         <item name="chart_activity">@color/chart_activity_light</item>
         <item name="chart_not_worn">@color/chart_not_worn_light</item>
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
     </style>
 
     <style name="GadgetbridgeTheme.NoActionBar">
@@ -61,7 +62,7 @@
     -->
 
     <style name="UAmpAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">#ffff5722</item>
+        <item name="colorPrimary">@color/emotion_color_none</item>
         <item name="colorPrimaryDark">#ffbf360c</item>
         <item name="colorAccent">#ffff5722</item>
         <item name="alertDialogTheme">@style/Theme.AppCompat.Dialog.Alert</item>
@@ -83,6 +84,8 @@
              - floating action button background (Play/Pause in media apps)
          -->
         <item name="colorAccent">@color/bt_accent</item>
+        <item name="colorPrimary">@color/emotion_color_none</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
     </style>
 
     <style name="WearTheme" parent="UAmpAppTheme">
