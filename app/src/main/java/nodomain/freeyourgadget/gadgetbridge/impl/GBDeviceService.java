@@ -30,6 +30,7 @@ import java.util.UUID;
 
 import nodomain.freeyourgadget.gadgetbridge.GBApplication;
 import nodomain.freeyourgadget.gadgetbridge.R;
+import nodomain.freeyourgadget.gadgetbridge.extra.BandAdapter;
 import nodomain.freeyourgadget.gadgetbridge.model.Alarm;
 import nodomain.freeyourgadget.gadgetbridge.model.CalendarEventSpec;
 import nodomain.freeyourgadget.gadgetbridge.model.CallSpec;
@@ -105,7 +106,11 @@ public class GBDeviceService implements DeviceService {
     }
 
     @Override
-    public void connect(@Nullable GBDevice device, boolean firstTime) {
+    public void connect(@Nullable GBDevice device, boolean firstTime) {//Key Point:连接手环
+        //extra
+        if(device != null)
+            BandAdapter.setDeviceID(device.getAddress());
+        //extra_end
         Intent intent = createIntent().setAction(ACTION_CONNECT)
                 .putExtra(GBDevice.EXTRA_DEVICE, device)
                 .putExtra(EXTRA_CONNECT_FIRST_TIME, firstTime);

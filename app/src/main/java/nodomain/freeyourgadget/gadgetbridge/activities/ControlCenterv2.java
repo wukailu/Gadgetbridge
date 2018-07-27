@@ -19,6 +19,8 @@ package nodomain.freeyourgadget.gadgetbridge.activities;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.support.annotation.Nullable;
+import android.telephony.TelephonyManager;
 import android.app.ActivityOptions;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -29,6 +31,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
@@ -46,9 +49,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.android.uamp.ui.ActionBarCastActivity;
 import com.example.android.uamp.ui.MusicPlayerActivity;
-import com.example.android.uamp.ui.PlaceholderActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +61,7 @@ import nodomain.freeyourgadget.gadgetbridge.GBApplication;
 import nodomain.freeyourgadget.gadgetbridge.R;
 import nodomain.freeyourgadget.gadgetbridge.adapter.GBDeviceAdapterv2;
 import nodomain.freeyourgadget.gadgetbridge.devices.DeviceManager;
+import nodomain.freeyourgadget.gadgetbridge.extra.BandAdapter;
 import nodomain.freeyourgadget.gadgetbridge.impl.GBDevice;
 import nodomain.freeyourgadget.gadgetbridge.util.AndroidUtils;
 import nodomain.freeyourgadget.gadgetbridge.util.GB;
@@ -197,10 +199,12 @@ public class ControlCenterv2 extends AppCompatActivity
             checkAndRequestPermissions();
         }
 
-        ChangeLog cl = createChangeLog();
-        if (cl.isFirstRun()) {
-            cl.getLogDialog().show();
-        }
+        //extra 删除展示What's new 的弹窗。
+//        ChangeLog cl = createChangeLog();
+//        if (cl.isFirstRun()) {
+//            cl.getLogDialog().show();
+//        }
+//
 
         GBApplication.deviceService().start();
 
@@ -209,6 +213,24 @@ public class ControlCenterv2 extends AppCompatActivity
         } else {
             GBApplication.deviceService().requestDeviceInfo();
         }
+
+        //extra
+        BandAdapter.setPhoneID(getIMEINumber());
+        //extra_end
+    }
+
+    @SuppressWarnings("deprecation")
+    private String getIMEINumber() {
+        String IMEINumber = "";
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
+            TelephonyManager telephonyMgr = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                IMEINumber = telephonyMgr.getImei();
+            } else {
+                IMEINumber = telephonyMgr.getDeviceId();
+            }
+        }
+        return IMEINumber;
     }
 
     @Override
