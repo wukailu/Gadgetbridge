@@ -51,6 +51,8 @@ import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 
+import nodomain.freeyourgadget.gadgetbridge.extra.BandAdapter;
+
 import static android.support.v4.media.session.MediaSessionCompat.QueueItem;
 import static com.google.android.exoplayer2.C.CONTENT_TYPE_MUSIC;
 import static com.google.android.exoplayer2.C.USAGE_MEDIA;
@@ -201,6 +203,7 @@ public final class LocalPlayback implements Playback {
                     mMusicProvider.getMusic(
                             MediaIDHelper.extractMusicIDFromMediaID(
                                     item.getDescription().getMediaId()));
+            BandAdapter.startPlayingMusic(track);
 
             String source = track.getString(MusicProviderSource.CUSTOM_METADATA_TRACK_SOURCE);
             if (source != null) {
@@ -247,6 +250,8 @@ public final class LocalPlayback implements Playback {
             // Wifi lock, which prevents the Wifi radio from going to
             // sleep while the song is playing.
             mWifiLock.acquire();
+        }else{
+            BandAdapter.startPlayingMusic();
         }
 
         configurePlayerState();
@@ -254,6 +259,7 @@ public final class LocalPlayback implements Playback {
 
     @Override
     public void pause() {
+        BandAdapter.stopPlayingMusic();
         // Pause player and cancel the 'foreground service' state.
         if (mExoPlayer != null) {
             mExoPlayer.setPlayWhenReady(false);

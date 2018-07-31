@@ -89,4 +89,17 @@ public class PeriodicExporter extends BroadcastReceiver {
             LOG.info("Exception while exporting DB: ", ex);
         }
     }
+
+    //extra:主动的数据获取
+    public static void exportManually(OutputStream out){
+        Context context = GBApplication.getContext();
+        LOG.info("Exporting DB Manually");
+        try (DBHandler dbHandler = GBApplication.acquireDB()) {
+            new DBHelper(context).exportDB(dbHandler, out);
+        } catch (Exception ex) {
+            GB.updateExportFailedNotification(context.getString(R.string.notif_export_failed_title), context);
+            LOG.info("Exception while exporting DB: ", ex);
+        }
+    }
+
 }

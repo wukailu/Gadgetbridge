@@ -36,6 +36,8 @@ import com.google.android.gms.common.images.WebImage;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import nodomain.freeyourgadget.gadgetbridge.extra.BandAdapter;
+
 import static android.support.v4.media.session.MediaSessionCompat.QueueItem;
 
 /**
@@ -110,6 +112,7 @@ public class CastPlayback implements Playback {
             if (mCallback != null) {
                 mCallback.onPlaybackStatusChanged(mPlaybackState);
             }
+            BandAdapter.startPlayingMusic(mRemoteMediaClient.getMediaInfo().getMetadata());
         } catch (JSONException e) {
             LogHelper.e(TAG, "Exception loading media ", e, null);
             if (mCallback != null) {
@@ -127,6 +130,7 @@ public class CastPlayback implements Playback {
             } else {
                 loadMedia(mCurrentMediaId, false);
             }
+            BandAdapter.stopPlayingMusic(mRemoteMediaClient.getMediaInfo().getMetadata());
         } catch (JSONException e) {
             LogHelper.e(TAG, e, "Exception pausing cast playback");
             if (mCallback != null) {

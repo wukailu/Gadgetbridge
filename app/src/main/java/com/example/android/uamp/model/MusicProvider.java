@@ -25,6 +25,8 @@ import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
 
 import nodomain.freeyourgadget.gadgetbridge.R;
+import nodomain.freeyourgadget.gadgetbridge.extra.RemoteMusicSourceProvider;
+
 import com.example.android.uamp.utils.LogHelper;
 import com.example.android.uamp.utils.MediaIDHelper;
 
@@ -68,7 +70,7 @@ public class MusicProvider {
     }
 
     public MusicProvider() {
-        this(new RemoteJSONSource());
+        this(new RemoteMusicSourceProvider());
     }
     public MusicProvider(MusicProviderSource source) {
         mSource = source;

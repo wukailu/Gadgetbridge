@@ -41,9 +41,6 @@ public class RemoteJSONSource implements MusicProviderSource {
 
     private static final String TAG = LogHelper.makeLogTag(RemoteJSONSource.class);
 
-    protected static final String CATALOG_URL =
-            "http://storage.googleapis.com/automotive-media/music.json";
-
     private static final String JSON_MUSIC = "music";
     private static final String JSON_TITLE = "title";
     private static final String JSON_ALBUM = "album";
@@ -55,14 +52,16 @@ public class RemoteJSONSource implements MusicProviderSource {
     private static final String JSON_TOTAL_TRACK_COUNT = "totalTrackCount";
     private static final String JSON_DURATION = "duration";
 
-
-
+    public String getCATALOG_URL() {
+        return "http://storage.googleapis.com/automotive-media/music.json";
+    }
+    
     @Override
     public Iterator<MediaMetadataCompat> iterator() {
         try {
-            int slashPos = CATALOG_URL.lastIndexOf('/');
-            String path = CATALOG_URL.substring(0, slashPos + 1);
-            JSONObject jsonObj = fetchJSONFromUrl(CATALOG_URL);
+            int slashPos = getCATALOG_URL().lastIndexOf('/');
+            String path = getCATALOG_URL().substring(0, slashPos + 1);
+            JSONObject jsonObj = fetchJSONFromUrl(getCATALOG_URL());
             ArrayList<MediaMetadataCompat> tracks = new ArrayList<>();
             if (jsonObj != null) {
                 JSONArray jsonTracks = jsonObj.getJSONArray(JSON_MUSIC);
@@ -80,7 +79,7 @@ public class RemoteJSONSource implements MusicProviderSource {
         }
     }
 
-    private MediaMetadataCompat buildFromJSON(JSONObject json, String basePath) throws JSONException {
+    protected MediaMetadataCompat.Builder constructJSONBuilder(JSONObject json, String basePath) throws JSONException {
         String title = json.getString(JSON_TITLE);
         String album = json.getString(JSON_ALBUM);
         String artist = json.getString(JSON_ARTIST);
@@ -109,6 +108,7 @@ public class RemoteJSONSource implements MusicProviderSource {
         // the session metadata can be accessed by notification listeners. This is done in this
         // sample for convenience only.
         //noinspection ResourceType
+
         return new MediaMetadataCompat.Builder()
                 .putString(MediaMetadataCompat.METADATA_KEY_MEDIA_ID, id)
                 .putString(MusicProviderSource.CUSTOM_METADATA_TRACK_SOURCE, source)
@@ -119,8 +119,11 @@ public class RemoteJSONSource implements MusicProviderSource {
                 .putString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI, iconUrl)
                 .putString(MediaMetadataCompat.METADATA_KEY_TITLE, title)
                 .putLong(MediaMetadataCompat.METADATA_KEY_TRACK_NUMBER, trackNumber)
-                .putLong(MediaMetadataCompat.METADATA_KEY_NUM_TRACKS, totalTrackCount)
-                .build();
+                .putLong(MediaMetadataCompat.METADATA_KEY_NUM_TRACKS, totalTrackCount);
+    }
+
+    private MediaMetadataCompat buildFromJSON(JSONObject json, String basePath) throws JSONException {
+        return constructJSONBuilder(json, basePath).build();
     }
 
     /**
