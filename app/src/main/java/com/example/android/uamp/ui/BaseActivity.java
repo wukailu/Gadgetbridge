@@ -29,10 +29,11 @@ import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 
 import com.example.android.uamp.MusicService;
-import nodomain.freeyourgadget.gadgetbridge.R;
 import com.example.android.uamp.utils.LogHelper;
 import com.example.android.uamp.utils.NetworkHelper;
 import com.example.android.uamp.utils.ResourceHelper;
+
+import nodomain.freeyourgadget.gadgetbridge.R;
 
 /**
  * Base activity for activities that need to show a playback control fragment when media is playing.

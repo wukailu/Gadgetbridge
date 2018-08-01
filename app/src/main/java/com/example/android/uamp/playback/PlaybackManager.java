@@ -24,10 +24,12 @@ import android.support.annotation.NonNull;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 
-import nodomain.freeyourgadget.gadgetbridge.R;
 import com.example.android.uamp.model.MusicProvider;
 import com.example.android.uamp.utils.LogHelper;
 import com.example.android.uamp.utils.MediaIDHelper;
+
+import nodomain.freeyourgadget.gadgetbridge.R;
+import nodomain.freeyourgadget.gadgetbridge.extra.BandAdapter;
 
 /**
  * Manage the interactions among the container service, the queue manager and the actual playback.
@@ -304,6 +306,7 @@ public class PlaybackManager implements Playback.Callback {
 
         @Override
         public void onSkipToNext() {
+            BandAdapter.onSkipToNext();
             LogHelper.d(TAG, "skipToNext");
             if (mQueueManager.skipQueuePosition(1)) {
                 handlePlayRequest();

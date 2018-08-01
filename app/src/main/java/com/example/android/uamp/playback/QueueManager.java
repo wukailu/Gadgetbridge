@@ -24,7 +24,6 @@ import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 
 import com.example.android.uamp.AlbumArtCache;
-import nodomain.freeyourgadget.gadgetbridge.R;
 import com.example.android.uamp.model.MusicProvider;
 import com.example.android.uamp.utils.LogHelper;
 import com.example.android.uamp.utils.MediaIDHelper;
@@ -34,6 +33,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import nodomain.freeyourgadget.gadgetbridge.R;
 
 /**
  * Simple data provider for queues. Keeps track of a current queue and a current index in the

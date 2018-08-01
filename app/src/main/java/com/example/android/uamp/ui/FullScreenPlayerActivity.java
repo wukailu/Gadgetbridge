@@ -40,13 +40,14 @@ import android.widget.TextView;
 
 import com.example.android.uamp.AlbumArtCache;
 import com.example.android.uamp.MusicService;
-import nodomain.freeyourgadget.gadgetbridge.R;
 import com.example.android.uamp.utils.LogHelper;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
+
+import nodomain.freeyourgadget.gadgetbridge.R;
 
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;

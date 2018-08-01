@@ -580,4 +580,6 @@
     <string name="media_route_menu_title">播放到</string>
     <string name="nav_header_username">用户名</string>
     <string name="gadgetbridge_running">Gadgetbridge正在运行</string>
+    <string name="drawer_onlinemusic_title">在线音乐</string>
+    <string name="drawer_localmusic_title">本地音乐</string>
 </resources>

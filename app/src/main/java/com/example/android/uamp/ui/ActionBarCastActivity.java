@@ -20,7 +20,6 @@ import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Debug;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -34,13 +33,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import nodomain.freeyourgadget.gadgetbridge.GBApplication;
-import nodomain.freeyourgadget.gadgetbridge.R;
-import nodomain.freeyourgadget.gadgetbridge.activities.ControlCenterv2;
-import nodomain.freeyourgadget.gadgetbridge.activities.DbManagementActivity;
-import nodomain.freeyourgadget.gadgetbridge.activities.DebugActivity;
-import nodomain.freeyourgadget.gadgetbridge.activities.SettingsActivity;
-
 import com.example.android.uamp.utils.LogHelper;
 import com.google.android.gms.cast.framework.CastButtonFactory;
 import com.google.android.gms.cast.framework.CastContext;
@@ -49,6 +41,12 @@ import com.google.android.gms.cast.framework.CastStateListener;
 import com.google.android.gms.cast.framework.IntroductoryOverlay;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+
+import nodomain.freeyourgadget.gadgetbridge.R;
+import nodomain.freeyourgadget.gadgetbridge.activities.ControlCenterv2;
+import nodomain.freeyourgadget.gadgetbridge.activities.DbManagementActivity;
+import nodomain.freeyourgadget.gadgetbridge.activities.DebugActivity;
+import nodomain.freeyourgadget.gadgetbridge.activities.SettingsActivity;
 
 /**
  * Abstract activity with toolbar, navigation drawer and cast support. Needs to be extended by
@@ -103,7 +101,7 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
 
                 Class activityClass = null;
                 switch (mItemToOpenWhenDrawerCloses) {
-                    case R.id.navigation_allmusic:
+                    case R.id.navigation_onlinemusic:
                         activityClass = MusicPlayerActivity.class;
                         startActivity(new Intent(ActionBarCastActivity.this, activityClass), extras);
                         finish();
@@ -314,7 +312,7 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
                     }
                 });
         if (MusicPlayerActivity.class.isAssignableFrom(getClass())) {
-            navigationView.setCheckedItem(R.id.navigation_allmusic);
+            navigationView.setCheckedItem(R.id.navigation_onlinemusic);
         } else if (PlaceholderActivity.class.isAssignableFrom(getClass())) {
             navigationView.setCheckedItem(R.id.navigation_playlists);
         }

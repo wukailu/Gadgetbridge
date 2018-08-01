@@ -26,15 +26,20 @@ import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import nodomain.freeyourgadget.gadgetbridge.R;
 import com.example.android.uamp.utils.MediaIDHelper;
+
+import nodomain.freeyourgadget.gadgetbridge.R;
+import nodomain.freeyourgadget.gadgetbridge.extra.BandAdapter;
 
 public class MediaItemViewHolder {
 
@@ -100,6 +105,25 @@ public class MediaItemViewHolder {
         ((TextView)holder.mEmotionView.getChildAt(1)).setText( EMOTIONS_TYPES[ type2 ] );
         ((TextView)holder.mEmotionView.getChildAt(2)).setText( EMOTIONS_TYPES[ type3 ] );
 
+        for(int i = 0;i < 3; i++){
+            final int index = i;
+            ((EditText)holder.mEmotionView.getChildAt(i)).addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    BandAdapter.onTagChanged(holder.mTitleView.getText().toString(), index, s.toString());
+                }
+            });
+        }
 
         // If the state of convertView is different, we need to adapt the view to the
         // new state.

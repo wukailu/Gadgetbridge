@@ -16,9 +16,7 @@
 package com.example.android.uamp.ui;
 
 import android.app.Activity;
-import android.app.UiModeManager;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 
 import com.example.android.uamp.utils.LogHelper;

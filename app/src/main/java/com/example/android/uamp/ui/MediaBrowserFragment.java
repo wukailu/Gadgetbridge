@@ -37,13 +37,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import nodomain.freeyourgadget.gadgetbridge.R;
 import com.example.android.uamp.utils.LogHelper;
 import com.example.android.uamp.utils.MediaIDHelper;
 import com.example.android.uamp.utils.NetworkHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import nodomain.freeyourgadget.gadgetbridge.R;
 
 /**
  * A Fragment that lists all the various browsable queues available

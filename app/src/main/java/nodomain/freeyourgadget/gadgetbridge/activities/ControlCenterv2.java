@@ -285,13 +285,19 @@ public class ControlCenterv2 extends AppCompatActivity
 
         Class activityClass = null;
         switch (item.getItemId()) {
-            case R.id.navigation_allmusic:
+            case R.id.navigation_onlinemusic:
+                BandAdapter.setPlayType(BandAdapter.PLAYTYPE_ONLINE);
+                activityClass = MusicPlayerActivity.class;
+                startActivity(new Intent(this, activityClass));
+                finish();
+                break;
+            case R.id.navigation_localmusic:
+                BandAdapter.setPlayType(BandAdapter.PLAYTYPE_LOCAL);
                 activityClass = MusicPlayerActivity.class;
                 startActivity(new Intent(this, activityClass));
                 finish();
                 break;
             case R.id.navigation_playlists:
-                // TODO: Change the Class to Band main.
                 activityClass = ControlCenterv2.class;
                 startActivity(new Intent(this, activityClass));
                 finish();

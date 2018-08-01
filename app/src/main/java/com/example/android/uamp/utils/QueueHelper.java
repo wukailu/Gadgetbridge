@@ -56,13 +56,7 @@ public class QueueHelper {
         String categoryValue = hierarchy[1];
         LogHelper.d(TAG, "Creating playing queue for ", categoryType, ",  ", categoryValue);
 
-        Iterable<MediaMetadataCompat> tracks = null;
-        // This sample only supports genre and by_search category types.
-        if (categoryType.equals(MEDIA_ID_MUSICS_BY_GENRE)) {
-            tracks = musicProvider.getMusicsByGenre(categoryValue);
-        } else if (categoryType.equals(MEDIA_ID_MUSICS_BY_SEARCH)) {
-            tracks = musicProvider.searchMusicBySongTitle(categoryValue);
-        }
+        Iterable<MediaMetadataCompat> tracks = musicProvider.getMusic(categoryType,categoryValue);
 
         if (tracks == null) {
             LogHelper.e(TAG, "Unrecognized category type: ", categoryType, " for media ", mediaId);
@@ -92,7 +86,7 @@ public class QueueHelper {
         if (params.isAlbumFocus) {
             result = musicProvider.searchMusicByAlbum(params.album);
         } else if (params.isGenreFocus) {
-            result = musicProvider.getMusicsByGenre(params.genre);
+            result = musicProvider.getMusic(MEDIA_ID_MUSICS_BY_GENRE, params.genre);
         } else if (params.isArtistFocus) {
             result = musicProvider.searchMusicByArtist(params.artist);
         } else if (params.isSongFocus) {
@@ -110,7 +104,7 @@ public class QueueHelper {
             // on other fields as well.
             result = musicProvider.searchMusicBySongTitle(query);
             if (result.isEmpty()) {
-                result = musicProvider.searchMusicByGenre(query);
+                result = musicProvider.searchMusicByAssortable(MediaMetadataCompat.METADATA_KEY_GENRE, query);
             }
         }
 

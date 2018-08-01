@@ -14,8 +14,8 @@ import java.io.OutputStream;
 import nodomain.freeyourgadget.gadgetbridge.database.PeriodicExporter;
 
 public class BandAdapter {
-    static String currentPhoneID;
-    static String currentDeviceID;
+    private static String currentPhoneID;
+    private static String currentDeviceID;
 
     public static String getCurrentID(){
         return currentPhoneID + "-" + currentDeviceID;
@@ -34,7 +34,7 @@ public class BandAdapter {
     }
 
 
-    static MediaMetadata currentMusic;
+    private static MediaMetadata currentMusic;
     /**
      * Play the current music
      */
@@ -66,4 +66,25 @@ public class BandAdapter {
         }
     }
 
+    //当前音乐被切掉
+    public static void onSkipToNext(){
+        //TODO:handle this
+    }
+
+    public static void onTagChanged(String songTitle, int index, String newTag){
+        //TODO: Music motion tag has been changed!
+    }
+
+    //当前播放类型 本地/在线
+    private static int playType = 2;
+    public static final int PLAYTYPE_LOCAL = 1;
+    public static final int PLAYTYPE_ONLINE = 2;
+
+    public static void setPlayType(int PLAYTYPE){
+        playType = PLAYTYPE;
+    }
+
+    public static int getPlayType(){
+        return playType;
+    }
 }

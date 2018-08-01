@@ -35,8 +35,9 @@ import android.widget.Toast;
 
 import com.example.android.uamp.AlbumArtCache;
 import com.example.android.uamp.MusicService;
-import nodomain.freeyourgadget.gadgetbridge.R;
 import com.example.android.uamp.utils.LogHelper;
+
+import nodomain.freeyourgadget.gadgetbridge.R;
 
 /**
  * A class that shows the Media Queue to the user.

@@ -25,8 +25,9 @@ import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.text.TextUtils;
 
-import nodomain.freeyourgadget.gadgetbridge.R;
 import com.example.android.uamp.utils.LogHelper;
+
+import nodomain.freeyourgadget.gadgetbridge.R;
 
 /**
  * Main activity for the music player.

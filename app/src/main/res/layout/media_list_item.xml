@@ -71,33 +71,43 @@
         android:layout_toEndOf="@+id/music_info"
         android:orientation="vertical">
 
-        <TextView
+        <EditText
             android:id="@+id/music_emotion1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="24dp"
+            android:background="@null"
+            android:paddingBottom="6dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:text="@string/emotion_none"
             android:textAlignment="center"
             android:textColor="@color/emotion_color_none"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
-        <TextView
+        <EditText
             android:id="@+id/music_emotion2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="24dp"
+            android:background="@null"
+            android:paddingBottom="6dp"
+            android:singleLine="true"
             android:text="@string/emotion_none"
             android:textAlignment="center"
             android:textColor="@color/emotion_color_none"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
-        <TextView
+        <EditText
             android:id="@+id/music_emotion3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="24dp"
+            android:background="@null"
+            android:paddingBottom="6dp"
             android:text="@string/emotion_none"
             android:textAlignment="center"
             android:textColor="@color/emotion_color_none"
+            android:textSize="12sp"
             android:textStyle="bold" />
     </LinearLayout>
 
