@@ -50,6 +50,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.android.uamp.ui.MusicPlayerActivity;
+import com.example.android.uamp.ui.PlaceholderActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -297,7 +298,7 @@ public class ControlCenterv2 extends AppCompatActivity
                 startActivity(new Intent(this, activityClass));
                 finish();
                 break;
-            case R.id.navigation_playlists:
+            case R.id.navigation_bandManage:
                 activityClass = ControlCenterv2.class;
                 startActivity(new Intent(this, activityClass));
                 finish();

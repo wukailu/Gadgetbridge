@@ -22,5 +22,15 @@ import java.util.Iterator;
 
 public interface MusicProviderSource {
     String CUSTOM_METADATA_TRACK_SOURCE = "__SOURCE__";
+    String[] EMOTIONS_TYPES={
+            "Aggressive", "Brooding", "Cool", "Defiant", "Easygoing",
+            "Empowering", "Energizing", "Excited", "Fiery", "Gritty",
+            "Lively", "Melancholy", "Peaceful", "Romantic", "Rowdy",
+            "Sensual", "Sentimental", "Serious", "Somber", "Sophisticated",
+            "Stirring", "Tender", "Upbeat", "Urgent", "Yearning"
+    };
+    String CUSTOM_METADATA_KEY_EMONTION0 = "__EMOTION0__";
+    String CUSTOM_METADATA_KEY_EMONTION1 = "__EMOTION1__";
+    String CUSTOM_METADATA_KEY_EMONTION2 = "__EMOTION2__";
     Iterator<MediaMetadataCompat> iterator();
 }

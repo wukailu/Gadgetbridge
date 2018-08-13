@@ -36,8 +36,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 import nodomain.freeyourgadget.gadgetbridge.extra.Assortable;
+import nodomain.freeyourgadget.gadgetbridge.extra.BandAdapter;
 import nodomain.freeyourgadget.gadgetbridge.extra.ByGenres;
-import nodomain.freeyourgadget.gadgetbridge.extra.RemoteMusicSourceProvider;
+import nodomain.freeyourgadget.gadgetbridge.extra.RemoteMusicSource;
 
 import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_MUSICS_BY_SEARCH;
 import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_ROOT;
@@ -69,7 +70,7 @@ public class MusicProvider {
     }
 
     public MusicProvider() {
-        this(new RemoteMusicSourceProvider());
+        this(new RemoteMusicSource());
     }
     public MusicProvider(MusicProviderSource source) {
         mSource = source;
@@ -94,7 +95,7 @@ public class MusicProvider {
         return shuffled;
     }
 
-    public List<MediaMetadataCompat> getMusic(String categoryType, String keyValue){
+    public List<MediaMetadataCompat> getMusics(String categoryType, String keyValue){
         for(Assortable i: mMusicListKeys)
             if(i.getMEDIA_ID_MUSICS_BY_Key().equals(categoryType))
                 return i.getMusicsByKey(keyValue);

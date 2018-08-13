@@ -8,13 +8,15 @@ import android.support.v4.media.MediaMetadataCompat;
 
 import com.example.android.uamp.model.MusicProvider;
 import com.example.android.uamp.model.MusicProviderSource;
+import com.example.android.uamp.utils.MediaIDHelper;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import nodomain.freeyourgadget.gadgetbridge.GBApplication;
 
-public class LocalMusicSourceProvider implements MusicProviderSource {
+public class LocalMusicSource implements MusicProviderSource {
     private ArrayList<MediaMetadataCompat> MusicList;
 
     @Override
@@ -22,6 +24,22 @@ public class LocalMusicSourceProvider implements MusicProviderSource {
         if(MusicList == null)
             MusicList = getLocalMusicList(GBApplication.getContext());
         return MusicList.iterator();
+    }
+
+    private List<String> generateEmotionType(){
+        //TODO:Modify the tag in a scientific way
+        int type1 = (int)(Math.random()*25);
+        int type2 = (int)(Math.random()*25);
+        while(type2 == type1)
+            type2 = (int)(Math.random()*25);
+        int type3 = (int)(Math.random()*25);
+        while(type3 == type2 || type3 == type1)
+            type3 = (int)(Math.random()*25);
+        List<String>ret = new ArrayList<String>();
+        ret.add(MusicProviderSource.EMOTIONS_TYPES[type1]);
+        ret.add(MusicProviderSource.EMOTIONS_TYPES[type2]);
+        ret.add(MusicProviderSource.EMOTIONS_TYPES[type3]);
+        return ret;
     }
 
     /**
@@ -37,6 +55,7 @@ public class LocalMusicSourceProvider implements MusicProviderSource {
                         cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION)) < 3e4)
                     continue;//过滤大小小于100KB或者时长小于30S的音频
 
+                List<String> emotions = generateEmotionType();
                 MediaMetadataCompat song = new MediaMetadataCompat.Builder()
                         .putString(
                                 MediaMetadata.METADATA_KEY_TITLE,
@@ -53,7 +72,20 @@ public class LocalMusicSourceProvider implements MusicProviderSource {
                         .putLong(
                                 MediaMetadata.METADATA_KEY_DURATION,
                                 cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION))
-                        ).build();
+                        )
+                        .putString(
+                                MusicProviderSource.CUSTOM_METADATA_KEY_EMONTION0,
+                                emotions.get(0)
+                        )
+                        .putString(
+                                MusicProviderSource.CUSTOM_METADATA_KEY_EMONTION1,
+                                emotions.get(1)
+                        )
+                        .putString(
+                                MusicProviderSource.CUSTOM_METADATA_KEY_EMONTION2,
+                                emotions.get(2)
+                        )
+                        .build();
 
                 list.add(song);
             }

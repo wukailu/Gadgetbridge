@@ -54,8 +54,8 @@ package com.example.android.uamp;
 
  import nodomain.freeyourgadget.gadgetbridge.R;
  import nodomain.freeyourgadget.gadgetbridge.extra.BandAdapter;
- import nodomain.freeyourgadget.gadgetbridge.extra.LocalMusicSourceProvider;
- import nodomain.freeyourgadget.gadgetbridge.extra.RemoteMusicSourceProvider;
+ import nodomain.freeyourgadget.gadgetbridge.extra.LocalMusicSource;
+ import nodomain.freeyourgadget.gadgetbridge.extra.RemoteMusicSource;
 
  import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_EMPTY_ROOT;
  import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_ROOT;
@@ -163,10 +163,11 @@ public class MusicService extends MediaBrowserServiceCompat implements
         LogHelper.d(TAG, "onCreate");
 
         if(BandAdapter.getPlayType() == BandAdapter.PLAYTYPE_ONLINE)
-            mMusicProvider = new MusicProvider(new RemoteMusicSourceProvider());
+            mMusicProvider = new MusicProvider(new RemoteMusicSource());
         else if(BandAdapter.getPlayType() == BandAdapter.PLAYTYPE_LOCAL)
-            mMusicProvider = new MusicProvider(new LocalMusicSourceProvider());
+            mMusicProvider = new MusicProvider(new LocalMusicSource());
 
+        BandAdapter.setMusicProivder(mMusicProvider);
         // To make the app more responsive, fetch and cache catalog information now.
         // This can help improve the response time in the method
         // {@link #onLoadChildren(String, Result<List<MediaItem>>) onLoadChildren()}.

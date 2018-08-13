@@ -7,6 +7,7 @@ import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
 
 import com.example.android.uamp.model.MutableMediaMetadata;
+import com.example.android.uamp.utils.MediaIDHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,7 +20,7 @@ import nodomain.freeyourgadget.gadgetbridge.R;
 import static com.example.android.uamp.utils.MediaIDHelper.createMediaID;
 
 public class ByGenres implements Assortable {
-    public static final String MEDIA_ID = "__BY_GENRE__";
+    public static String MEDIA_ID = MediaIDHelper.MEDIA_ID_MUSICS_BY_GENRE;
     private ConcurrentMap<String, List<MediaMetadataCompat>> mMusicList;
 
     enum State {

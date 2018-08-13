@@ -24,6 +24,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaDescriptionCompat;
+import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.text.Editable;
@@ -36,7 +37,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.android.uamp.model.MusicProviderSource;
 import com.example.android.uamp.utils.MediaIDHelper;
+import com.google.android.gms.cast.MediaMetadata;
 
 import nodomain.freeyourgadget.gadgetbridge.R;
 import nodomain.freeyourgadget.gadgetbridge.extra.BandAdapter;
@@ -56,14 +59,6 @@ public class MediaItemViewHolder {
     private TextView mTitleView;
     private TextView mDescriptionView;
     private LinearLayout mEmotionView;
-
-    private static final String[] EMOTIONS_TYPES={
-            "Aggressive", "Brooding", "Cool", "Defiant", "Easygoing",
-            "Empowering", "Energizing", "Excited", "Fiery", "Gritty",
-            "Lively", "Melancholy", "Peaceful", "Romantic", "Rowdy",
-            "Sensual", "Sentimental", "Serious", "Somber", "Sophisticated",
-            "Stirring", "Tender", "Upbeat", "Urgent", "Yearning"
-    };
 
     // Returns a view for use in media item list.
     static View setupListView(Activity activity, View convertView, ViewGroup parent,
@@ -94,17 +89,16 @@ public class MediaItemViewHolder {
         holder.mTitleView.setText(description.getTitle());
         holder.mDescriptionView.setText(description.getSubtitle());
 
-        int type1 = (int)(Math.random()*25);
-        int type2 = (int)(Math.random()*25);
-        while(type2 == type1)
-            type2 = (int)(Math.random()*25);
-        int type3 = (int)(Math.random()*25);
-        while(type3 == type2 || type3 == type1)
-            type3 = (int)(Math.random()*25);
-        ((TextView)holder.mEmotionView.getChildAt(0)).setText( EMOTIONS_TYPES[ type1 ] );
-        ((TextView)holder.mEmotionView.getChildAt(1)).setText( EMOTIONS_TYPES[ type2 ] );
-        ((TextView)holder.mEmotionView.getChildAt(2)).setText( EMOTIONS_TYPES[ type3 ] );
-
+        MediaMetadataCompat track = BandAdapter.getMusic(
+                MediaIDHelper.extractMusicIDFromMediaID(description.getMediaId()) );
+        if(track != null) {
+            ((TextView) holder.mEmotionView.getChildAt(0)).setText(
+                    track.getString(MusicProviderSource.CUSTOM_METADATA_KEY_EMONTION0));
+            ((TextView) holder.mEmotionView.getChildAt(1)).setText(
+                    track.getString(MusicProviderSource.CUSTOM_METADATA_KEY_EMONTION1));
+            ((TextView) holder.mEmotionView.getChildAt(2)).setText(
+                    track.getString(MusicProviderSource.CUSTOM_METADATA_KEY_EMONTION2));
+        }
         for(int i = 0;i < 3; i++){
             final int index = i;
             ((EditText)holder.mEmotionView.getChildAt(i)).addTextChangedListener(new TextWatcher() {

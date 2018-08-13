@@ -4,8 +4,10 @@ package nodomain.freeyourgadget.gadgetbridge.extra;
 * getCurrentID IMEI(phone)-MAC(band)
 * */
 
+import android.support.annotation.Nullable;
 import android.support.v4.media.MediaMetadataCompat;
 
+import com.example.android.uamp.model.MusicProvider;
 import com.google.android.gms.cast.MediaInfo;
 import com.google.android.gms.cast.MediaMetadata;
 
@@ -86,5 +88,15 @@ public class BandAdapter {
 
     public static int getPlayType(){
         return playType;
+    }
+
+    private static MusicProvider musicProvider;
+    public static void setMusicProivder(MusicProvider proivder){
+        musicProvider = proivder;
+    }
+
+    public static MediaMetadataCompat getMusic(@Nullable String musicId){
+        if(musicId == null) return null;
+        return musicProvider.getMusic(musicId);
     }
 }

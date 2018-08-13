@@ -47,6 +47,7 @@ import nodomain.freeyourgadget.gadgetbridge.activities.ControlCenterv2;
 import nodomain.freeyourgadget.gadgetbridge.activities.DbManagementActivity;
 import nodomain.freeyourgadget.gadgetbridge.activities.DebugActivity;
 import nodomain.freeyourgadget.gadgetbridge.activities.SettingsActivity;
+import nodomain.freeyourgadget.gadgetbridge.extra.BandAdapter;
 
 /**
  * Abstract activity with toolbar, navigation drawer and cast support. Needs to be extended by
@@ -102,12 +103,18 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
                 Class activityClass = null;
                 switch (mItemToOpenWhenDrawerCloses) {
                     case R.id.navigation_onlinemusic:
+                        BandAdapter.setPlayType(BandAdapter.PLAYTYPE_ONLINE);
                         activityClass = MusicPlayerActivity.class;
                         startActivity(new Intent(ActionBarCastActivity.this, activityClass), extras);
                         finish();
                         break;
-                    case R.id.navigation_playlists:
-                        // TODO: Change the Class to Band main.
+                    case R.id.navigation_localmusic:
+                        BandAdapter.setPlayType(BandAdapter.PLAYTYPE_LOCAL);
+                        activityClass = MusicPlayerActivity.class;
+                        startActivity(new Intent(ActionBarCastActivity.this, activityClass), extras);
+                        finish();
+                        break;
+                    case R.id.navigation_bandManage:
                         activityClass = ControlCenterv2.class;
                         startActivity(new Intent(ActionBarCastActivity.this, activityClass), extras);
                         finish();
@@ -311,10 +318,10 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
                         return true;
                     }
                 });
-        if (MusicPlayerActivity.class.isAssignableFrom(getClass())) {
+        if (BandAdapter.getPlayType() == BandAdapter.PLAYTYPE_ONLINE) {
             navigationView.setCheckedItem(R.id.navigation_onlinemusic);
-        } else if (PlaceholderActivity.class.isAssignableFrom(getClass())) {
-            navigationView.setCheckedItem(R.id.navigation_playlists);
+        } else if (BandAdapter.getPlayType() == BandAdapter.PLAYTYPE_LOCAL) {
+            navigationView.setCheckedItem(R.id.navigation_localmusic);
         }
     }
 

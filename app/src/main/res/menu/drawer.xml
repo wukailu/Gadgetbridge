@@ -21,7 +21,6 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/navigation_onlinemusic"
-            android:checked="false"
             android:icon="@drawable/ic_allmusic_black_24dp"
             android:title="@string/drawer_onlinemusic_title" />
         <item
@@ -29,7 +28,7 @@
             android:icon="@drawable/ic_playlist_music_black_24dp"
             android:title="@string/drawer_localmusic_title" />
         <item
-            android:id="@+id/navigation_playlists"
+            android:id="@+id/navigation_bandManage"
             android:icon="@drawable/ic_device_miband_disabled"
             android:title="@string/drawer_playlists_title" />
         <item
@@ -38,7 +37,6 @@
             android:title="@string/action_settings" />
         <item
             android:id="@+id/action_debug"
-            android:checked="false"
             android:icon="@drawable/ic_debug"
             android:title="@string/action_debug"
             android:visible="false" />
