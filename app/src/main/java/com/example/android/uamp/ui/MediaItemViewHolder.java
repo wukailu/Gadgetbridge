@@ -99,31 +99,33 @@ public class MediaItemViewHolder {
             ((TextView) holder.mEmotionView.getChildAt(2)).setText(
                     track.getString(MusicProviderSource.CUSTOM_METADATA_KEY_EMONTION2));
         }
-        for(int i = 0;i < 3; i++){
-            final int index = i;
-            ((EditText)holder.mEmotionView.getChildAt(i)).addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-                    BandAdapter.onTagChanged(holder.mTitleView.getText().toString(), index, s.toString());
-                }
-            });
-        }
+        //TODO:fix the bug of unable to modify tags
+//        for(int i = 0;i < 3; i++){
+//            final int index = i;
+//            ((EditText)holder.mEmotionView.getChildAt(i)).addTextChangedListener(new TextWatcher() {
+//                @Override
+//                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//                }
+//
+//                @Override
+//                public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//                }
+//
+//                @Override
+//                public void afterTextChanged(Editable s) {
+//                    BandAdapter.onTagChanged(holder.mTitleView.getText().toString(), index, s.toString());
+//                }
+//            });
+//        }
 
         // If the state of convertView is different, we need to adapt the view to the
         // new state.
         int state = getMediaItemState(activity, item);
         if (cachedState == null || cachedState != state) {
             Drawable drawable = getDrawableByState(activity, state);
+            //TODO:BUG TO FIX
             if (drawable != null) {
                 holder.mImageView.setImageDrawable(drawable);
                 holder.mImageView.setVisibility(View.VISIBLE);

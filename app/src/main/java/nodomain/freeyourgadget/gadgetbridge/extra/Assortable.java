@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.concurrent.ConcurrentMap;
 
 public interface Assortable {
-    String getMEDIA_ID_MUSICS_BY_Key();
+    String getKEY_MEDIA_ID();
 
     /**
      * Get an iterator over the list of keys

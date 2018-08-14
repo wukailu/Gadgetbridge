@@ -55,11 +55,16 @@ public class LocalMusicSource implements MusicProviderSource {
                         cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION)) < 3e4)
                     continue;//过滤大小小于100KB或者时长小于30S的音频
 
+                String songName = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DISPLAY_NAME));
+                if(songName.contains("-")){
+                    songName = songName.split("-")[1];
+                }
+
                 List<String> emotions = generateEmotionType();
                 MediaMetadataCompat song = new MediaMetadataCompat.Builder()
                         .putString(
                                 MediaMetadata.METADATA_KEY_TITLE,
-                                cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DISPLAY_NAME))
+                                songName
                         )
                         .putString(
                                 MediaMetadata.METADATA_KEY_ALBUM_ARTIST,
@@ -68,6 +73,10 @@ public class LocalMusicSource implements MusicProviderSource {
                         .putString(
                                 MusicProviderSource.CUSTOM_METADATA_TRACK_SOURCE,
                                 cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA))
+                        )
+                        .putString(
+                                MediaMetadataCompat.METADATA_KEY_MEDIA_ID,
+                                String.valueOf(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA)).hashCode())
                         )
                         .putLong(
                                 MediaMetadata.METADATA_KEY_DURATION,
@@ -86,6 +95,7 @@ public class LocalMusicSource implements MusicProviderSource {
                                 emotions.get(2)
                         )
                         .build();
+
 
                 list.add(song);
             }

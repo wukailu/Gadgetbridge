@@ -582,4 +582,6 @@
     <string name="gadgetbridge_running">Gadgetbridge正在运行</string>
     <string name="drawer_onlinemusic_title">在线音乐</string>
     <string name="drawer_localmusic_title">本地音乐</string>
+    <string name="browse_emotions">情感</string>
+    <string name="browse_emotions_subtitle">根据情感分类</string>
 </resources>

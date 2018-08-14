@@ -617,4 +617,6 @@
     <string name="gadgetbridge_running">Gadgetbridge is running</string>
     <string name="drawer_onlinemusic_title">Online Music</string>
     <string name="drawer_localmusic_title">Local Music</string>
+    <string name="browse_emotions">emotions</string>
+    <string name="browse_emotions_subtitle">by emotions</string>
 </resources>

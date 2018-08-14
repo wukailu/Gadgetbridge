@@ -36,8 +36,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 import nodomain.freeyourgadget.gadgetbridge.extra.Assortable;
-import nodomain.freeyourgadget.gadgetbridge.extra.BandAdapter;
+import nodomain.freeyourgadget.gadgetbridge.extra.ByEmotion;
 import nodomain.freeyourgadget.gadgetbridge.extra.ByGenres;
+import nodomain.freeyourgadget.gadgetbridge.extra.ByKeys;
 import nodomain.freeyourgadget.gadgetbridge.extra.RemoteMusicSource;
 
 import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_MUSICS_BY_SEARCH;
@@ -76,6 +77,7 @@ public class MusicProvider {
         mSource = source;
         mMusicListKeys = new ArrayList<>();
         mMusicListKeys.add(new ByGenres());
+        mMusicListKeys.add(new ByEmotion());
         mMusicListById = new ConcurrentHashMap<>();
         mFavoriteTracks = Collections.newSetFromMap(new ConcurrentHashMap<String, Boolean>());
     }
@@ -97,7 +99,7 @@ public class MusicProvider {
 
     public List<MediaMetadataCompat> getMusics(String categoryType, String keyValue){
         for(Assortable i: mMusicListKeys)
-            if(i.getMEDIA_ID_MUSICS_BY_Key().equals(categoryType))
+            if(i.getKEY_MEDIA_ID().equals(categoryType))
                 return i.getMusicsByKey(keyValue);
         if(categoryType.equals(MEDIA_ID_MUSICS_BY_SEARCH))
             return searchMusicBySongTitle(keyValue);
@@ -139,7 +141,7 @@ public class MusicProvider {
      */
     public List<MediaMetadataCompat> searchMusicByAssortable(String assortableTag,String query) {
         for(Assortable i: mMusicListKeys){
-            if(i.getMEDIA_ID_MUSICS_BY_Key().equals(assortableTag)){
+            if(i.getKEY_MEDIA_ID().equals(assortableTag)){
                 return searchMusic(i.getMetadataField(), query);
             }
         }
@@ -283,12 +285,12 @@ public class MusicProvider {
             boolean isMatched = false;
 
             for(Assortable i: mMusicListKeys){
-                if( i.getMEDIA_ID_MUSICS_BY_Key().equals(mediaId) ){
+                if( i.getKEY_MEDIA_ID().equals(mediaId) ){
                     for (String key : i.getKeys() ) {
                         mediaItems.add(i.createBrowsableMediaItemForSubKey(key, resources));
                     }
                     isMatched = true;
-                }else if (mediaId.startsWith(i.getMEDIA_ID_MUSICS_BY_Key())) {
+                }else if (mediaId.startsWith(i.getKEY_MEDIA_ID())) {
                     String key = MediaIDHelper.getHierarchy(mediaId)[1];
                     for (MediaMetadataCompat metadata : i.getMusicsByKey(key)) {
                         mediaItems.add(createMediaItem(metadata, i));
@@ -311,7 +313,7 @@ public class MusicProvider {
         // on where the music was selected from (by artist, by genre, random, etc)
         String key = metadata.getString(kind.getMetadataField());
         String hierarchyAwareMediaID = MediaIDHelper.createMediaID(
-                metadata.getDescription().getMediaId(), kind.getMEDIA_ID_MUSICS_BY_Key(), key);
+                metadata.getDescription().getMediaId(), kind.getKEY_MEDIA_ID(), key);
         MediaMetadataCompat copy = new MediaMetadataCompat.Builder(metadata)
                 .putString(MediaMetadataCompat.METADATA_KEY_MEDIA_ID, hierarchyAwareMediaID)
                 .build();

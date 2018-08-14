@@ -35,8 +35,11 @@ public class BandAdapter {
         PeriodicExporter.exportManually(out);
     }
 
+    public static boolean uploadData(){
+        return false;
+    }
 
-    private static MediaMetadata currentMusic;
+    private static String currentMusic;
     /**
      * Play the current music
      */
@@ -52,12 +55,13 @@ public class BandAdapter {
     }
 
     public static void startPlayingMusic(MediaMetadata info){
-        currentMusic = info;
+        currentMusic = info.getString(MediaMetadata.KEY_ALBUM_TITLE);
         startPlayingMusic();
     }
 
     public static void startPlayingMusic(MediaMetadataCompat info){
-        startPlayingMusic((MediaMetadata)info.getMediaMetadata());
+        currentMusic = info.getString(MediaMetadataCompat.METADATA_KEY_TITLE);
+        startPlayingMusic();
     }
 
     public static void stopPlayingMusic(MediaMetadata info){
@@ -78,7 +82,7 @@ public class BandAdapter {
     }
 
     //当前播放类型 本地/在线
-    private static int playType = 2;
+    private static int playType = 1;
     public static final int PLAYTYPE_LOCAL = 1;
     public static final int PLAYTYPE_ONLINE = 2;
 
@@ -98,5 +102,10 @@ public class BandAdapter {
     public static MediaMetadataCompat getMusic(@Nullable String musicId){
         if(musicId == null) return null;
         return musicProvider.getMusic(musicId);
+    }
+
+    //主动播放某种音乐
+    public static void playCertainMusic(String categoryType, String categoryValue){
+
     }
 }

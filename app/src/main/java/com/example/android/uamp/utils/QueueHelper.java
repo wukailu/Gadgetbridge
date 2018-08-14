@@ -29,6 +29,8 @@ import com.example.android.uamp.model.MusicProvider;
 import java.util.ArrayList;
 import java.util.List;
 
+import nodomain.freeyourgadget.gadgetbridge.extra.BandAdapter;
+
 import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_MUSICS_BY_GENRE;
 import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_MUSICS_BY_SEARCH;
 
@@ -55,6 +57,7 @@ public class QueueHelper {
         String categoryType = hierarchy[0];
         String categoryValue = hierarchy[1];
         LogHelper.d(TAG, "Creating playing queue for ", categoryType, ",  ", categoryValue);
+        BandAdapter.playCertainMusic(categoryType,categoryValue);
 
         Iterable<MediaMetadataCompat> tracks = musicProvider.getMusics(categoryType,categoryValue);
 
