@@ -39,6 +39,7 @@ import nodomain.freeyourgadget.gadgetbridge.extra.Assortable;
 import nodomain.freeyourgadget.gadgetbridge.extra.ByEmotion;
 import nodomain.freeyourgadget.gadgetbridge.extra.ByGenres;
 import nodomain.freeyourgadget.gadgetbridge.extra.ByKeys;
+import nodomain.freeyourgadget.gadgetbridge.extra.BySinger;
 import nodomain.freeyourgadget.gadgetbridge.extra.RemoteMusicSource;
 
 import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_MUSICS_BY_SEARCH;
@@ -76,8 +77,9 @@ public class MusicProvider {
     public MusicProvider(MusicProviderSource source) {
         mSource = source;
         mMusicListKeys = new ArrayList<>();
-        mMusicListKeys.add(new ByGenres());
+//        mMusicListKeys.add(new ByGenres());
         mMusicListKeys.add(new ByEmotion());
+        mMusicListKeys.add(new BySinger());
         mMusicListById = new ConcurrentHashMap<>();
         mFavoriteTracks = Collections.newSetFromMap(new ConcurrentHashMap<String, Boolean>());
     }

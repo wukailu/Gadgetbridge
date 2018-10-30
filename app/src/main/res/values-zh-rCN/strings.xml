@@ -584,4 +584,6 @@
     <string name="drawer_localmusic_title">本地音乐</string>
     <string name="browse_emotions">情感</string>
     <string name="browse_emotions_subtitle">根据情感分类</string>
+    <string name="browse_singer">歌手</string>
+    <string name="browse_singer_subtitle">根据歌手分类</string>
 </resources>

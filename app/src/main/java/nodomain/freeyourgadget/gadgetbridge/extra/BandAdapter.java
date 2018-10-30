@@ -8,10 +8,15 @@ import android.support.annotation.Nullable;
 import android.support.v4.media.MediaMetadataCompat;
 
 import com.example.android.uamp.model.MusicProvider;
+import com.example.android.uamp.utils.LogHelper;
 import com.google.android.gms.cast.MediaInfo;
 import com.google.android.gms.cast.MediaMetadata;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.util.Calendar;
 
 import nodomain.freeyourgadget.gadgetbridge.database.PeriodicExporter;
 
@@ -35,23 +40,42 @@ public class BandAdapter {
         PeriodicExporter.exportManually(out);
     }
 
-    public static boolean uploadData(){
+    public static boolean uploadData() {
+        ByteArrayOutputStream temp = new ByteArrayOutputStream();
+        OutputStreamWriter writer = new OutputStreamWriter(temp);
+        try {
+            writer.write("user=" + getCurrentID() + "&");
+            writer.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        exportDBToStream(temp);
+        try {
+            IOHelper.postToServer("/api/data",temp.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+            LogHelper.e("uploadData","IOException catched!");
+        }
         return false;
     }
 
     private static String currentMusic;
+    private static Long lastTimeTag;
+
     /**
      * Play the current music
      */
     public static void startPlayingMusic(){
-        //TODO:Fill the Code
+        lastTimeTag = Calendar.getInstance().getTimeInMillis();
     }
 
     /**
      * Stop the current playing music
      */
     public static void stopPlayingMusic(){
-        //TODO:Fill the Code
+        Long timenow = Calendar.getInstance().getTimeInMillis();
+        String tnow = Calendar.getInstance().getTime().toString();
+        IOHelper.saveData(tnow, currentMusic + "," + lastTimeTag + "," + timenow);
     }
 
     public static void startPlayingMusic(MediaMetadata info){
@@ -106,6 +130,7 @@ public class BandAdapter {
 
     //主动播放某种音乐
     public static void playCertainMusic(String categoryType, String categoryValue){
-
+        String timenow = Calendar.getInstance().getTime().toString();
+        IOHelper.saveData(timenow, "Start Playing Mood:" + categoryValue);
     }
 }

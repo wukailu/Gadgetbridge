@@ -619,4 +619,6 @@
     <string name="drawer_localmusic_title">Local Music</string>
     <string name="browse_emotions">emotions</string>
     <string name="browse_emotions_subtitle">by emotions</string>
+    <string name="browse_singer">Singer</string>
+    <string name="browse_singer_subtitle">by Singer</string>
 </resources>
